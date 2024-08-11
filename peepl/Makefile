@@ -12,4 +12,7 @@ lint-fix:
 	gofumpt -l -w .
 	golangci-lint run --fix
 
-.PHONY: postgres createdb dropdb lint-fix
+docker-build:
+	 docker compose up --build
+
+.PHONY: postgres createdb dropdb lint-fix docker-build

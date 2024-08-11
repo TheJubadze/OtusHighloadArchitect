@@ -37,5 +37,11 @@ COPY db/migration ./db/migration
 # Copy the wait-for-it.sh script into the container
 COPY wait-for-it.sh /root/wait-for-it.sh
 
+# Make the wait-for-it.sh CRLF to LF
+RUN sed -i 's/\r$//' wait-for-it.sh
+
+# Give execute permission to the wait-for-it.sh script
+RUN chmod +x /root/wait-for-it.sh
+
 # Command to run the executable
 CMD ["./wait-for-it.sh", "db:5432", "--", "./main"]
