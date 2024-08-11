@@ -16,12 +16,12 @@ CREATE TABLE "users" (
 
 CREATE TABLE "cities" (
   "id" serial PRIMARY KEY,
-  "name" varchar NOT NULL
+  "name" varchar NOT NULL UNIQUE
 );
 
 CREATE TABLE "user_roles" (
   "id" serial PRIMARY KEY,
-  "role" varchar NOT NULL
+  "role" varchar NOT NULL UNIQUE
 );
 
 ALTER TABLE "users" ADD FOREIGN KEY ("city_id") REFERENCES "cities" ("id");
