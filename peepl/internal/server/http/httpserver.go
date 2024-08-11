@@ -56,9 +56,35 @@ func (s *HttpServer) Stop(ctx context.Context) error {
 
 func (s *HttpServer) routes() http.Handler {
 	mux := http.NewServeMux()
-	mux.HandleFunc("POST /register", registerUser(s.storage))
-	mux.HandleFunc("POST /login", loginUser(s.storage))
+	mux.HandleFunc("POST /user/register", registerUser(s.storage))
+	mux.HandleFunc("POST /user/login", loginUser(s.storage))
+	mux.HandleFunc("GET /user/get/{login}", getUser(s.storage))
 	return mux
+}
+
+func getUser(s storage.Storage) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		// Extract the login from the URL path
+		login := r.URL.Path[len("/user/get/"):]
+
+		// Get the user from the storage
+		user, err := s.GetUser(login)
+		if err != nil {
+			http.Error(w, fmt.Sprintf("User not found: %s", err), http.StatusNotFound)
+			return
+		}
+
+		// Hide the password field before returning the user
+		user.Password = ""
+
+		// Encode the user to JSON and send it as a response
+		if err := json.NewEncoder(w).Encode(user); err != nil {
+			http.Error(w, fmt.Sprintf("Error encoding response: %s", err), http.StatusInternalServerError)
+			return
+		}
+
+		w.WriteHeader(http.StatusOK)
+	}
 }
 
 func registerUser(s storage.Storage) http.HandlerFunc {
