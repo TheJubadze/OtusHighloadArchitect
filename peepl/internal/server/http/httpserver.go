@@ -67,7 +67,6 @@ func getUser(s storage.Storage) http.HandlerFunc {
 		// Extract the login from the URL path
 		login := r.URL.Path[len("/user/get/"):]
 
-		// Get the user from the storage
 		user, err := s.GetUser(login)
 		if err != nil {
 			http.Error(w, fmt.Sprintf("User not found: %s", err), http.StatusNotFound)
@@ -77,7 +76,6 @@ func getUser(s storage.Storage) http.HandlerFunc {
 		// Hide the password field before returning the user
 		user.Password = ""
 
-		// Encode the user to JSON and send it as a response
 		if err := json.NewEncoder(w).Encode(user); err != nil {
 			http.Error(w, fmt.Sprintf("Error encoding response: %s", err), http.StatusInternalServerError)
 			return
@@ -104,7 +102,6 @@ func registerUser(s storage.Storage) http.HandlerFunc {
 
 		user.Password = string(hashedPassword)
 
-		// Add user to the database
 		if err := s.AddUser(user); err != nil {
 			http.Error(w, fmt.Sprintf("Error adding user: %s", err), http.StatusInternalServerError)
 			return
@@ -125,7 +122,6 @@ func loginUser(s storage.Storage) http.HandlerFunc {
 			return
 		}
 
-		// Find user by firstname
 		user, err := s.GetUser(credentials.Login)
 		if err != nil {
 			http.Error(w, fmt.Sprintf("User not found: %s", err), http.StatusNotFound)
