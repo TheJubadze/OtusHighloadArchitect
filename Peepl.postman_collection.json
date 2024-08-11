@@ -21,12 +21,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:80/user/register",
+					"raw": "http://localhost:8080/user/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "80",
+					"port": "8080",
 					"path": [
 						"user",
 						"register"
@@ -50,12 +50,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:80/user/login",
+					"raw": "http://localhost:8080/user/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "80",
+					"port": "8080",
 					"path": [
 						"user",
 						"login"
@@ -70,12 +70,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:80/user/get/terminator2",
+					"raw": "http://localhost:8080/user/get/terminator2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "80",
+					"port": "8080",
 					"path": [
 						"user",
 						"get",
