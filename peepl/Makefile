@@ -7,13 +7,9 @@ createdb:
 dropdb:
 	docker exec -it postgres16 dropdb peepl
 
-migrateup:
-	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/peepl?sslmode=disable" -verbose up
+lint-fix:
+	go mod tidy
+	gofumpt -l -w .
+	golangci-lint run --fix
 
-migratedown:
-	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/peepl?sslmode=disable" -verbose down
-
-sqlc:
-	sqlc generate
-
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc
+.PHONY: postgres createdb dropdb lint-fix
