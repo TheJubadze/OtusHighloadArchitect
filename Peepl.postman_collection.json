@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "0e1a376e-080f-4194-bd8a-9ebed68284ab",
+		"name": "Peepl",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1331840"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"login\": \"terminator2\",\r\n  \"password\": \"123\",\r\n  \"firstname\": \"John\",\r\n  \"lastname\": \"Doe\",\r\n  \"birthdate\": \"1990-05-15T00:00:00Z\",\r\n  \"sex\": \"male\",\r\n  \"interests\": \"coding, reading\",\r\n  \"city_id\": 1,\r\n  \"role_id\": 2\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:80/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"login\": \"terminator2\",\r\n  \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:80/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/user/get/terminator2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"user",
+						"get",
+						"terminator2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
