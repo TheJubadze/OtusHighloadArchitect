@@ -17,7 +17,7 @@ COPY . .
 RUN go build -o main .
 
 # Start a new stage from scratch
-FROM golang:1.22
+FROM debian:stable-slim
 
 # Set the Current Working Directory inside the container
 WORKDIR /root/
