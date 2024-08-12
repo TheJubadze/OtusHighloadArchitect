@@ -44,4 +44,4 @@ RUN sed -i 's/\r$//' wait-for-it.sh
 RUN chmod +x /root/wait-for-it.sh
 
 # Command to run the executable
-CMD ["./wait-for-it.sh", "db:5432", "--", "./main"]
+CMD ["./wait-for-it.sh", "db:5432", "--timeout=60", "--strict", "--", "./main"]
